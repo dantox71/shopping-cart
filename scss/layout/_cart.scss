@@ -6,7 +6,7 @@
   height: 100%;
   transition: $mainTransition;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 2;
+  z-index: 3;
   visibility: hidden;
 }
 
@@ -18,10 +18,21 @@
   width: 100%;
   overflow: scroll;
   z-index: 3;
-  background: rgba(255, 255, 255, 1);
+
   padding: 1.5rem;
   transition: $mainTransition;
   transform: translateX(100%);
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    z-index: -1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+  }
 }
 
 .showCart {

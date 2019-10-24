@@ -18,7 +18,7 @@ body {
   display: flex;
   align-items: center;
   background: #222;
-  z-index: 1; }
+  z-index: 3; }
 
 .navbar-center {
   width: 100%;
@@ -100,15 +100,25 @@ body {
 
 .hero {
   min-height: calc(100vh - 60px);
-  background: url("https://images.pexels.com/photos/205421/pexels-photo-205421.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260") center/cover no-repeat;
+  background: url("../img/showcase.jpeg") center/cover no-repeat;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  position: relative; }
+  .hero:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); }
 
 .banner {
   text-align: center;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.7);
   display: inline-block;
+  z-index: 2;
   padding: 3rem; }
 
 .banner-title {
@@ -213,7 +223,7 @@ body {
   height: 100%;
   transition: all 0.3s linear;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 2;
+  z-index: 3;
   visibility: hidden; }
 
 .cart {
@@ -224,10 +234,18 @@ body {
   width: 100%;
   overflow: scroll;
   z-index: 3;
-  background: white;
   padding: 1.5rem;
   transition: all 0.3s linear;
   transform: translateX(100%); }
+  .cart::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    z-index: -1;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); }
 
 .showCart {
   transform: translateX(0); }
