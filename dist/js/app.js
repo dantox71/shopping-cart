@@ -17,5 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const products = new Products();
   const storage = new Storage();
 
-  products.getProducts().then(data => console.log(data));
+  products.getProducts().then(products => console.log(products));
+
+  products.getProducts().then(products => ui.displayProducts(products));
 });

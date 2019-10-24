@@ -10,7 +10,7 @@
         "image": {
           "fields": {
             "file": {
-              "url": "./img/product1.jpg"
+              "url": "./img/product1.jpeg"
             }
           }
         }
@@ -21,12 +21,12 @@
         "id": "2"
       },
       "fields": {
-        "title": "apple laptop",
+        "title": "super expensive apple laptop",
         "price": 10000,
         "image": {
           "fields": {
             "file": {
-              "url": "./img/product2.jpg"
+              "url": "./img/product2.jpeg"
             }
           }
         }

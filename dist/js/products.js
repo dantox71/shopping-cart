@@ -3,7 +3,7 @@ class Products {
   async getProducts() {
     try {
       let response = await fetch("db/products.json");
-      let data = await response.json();
+      let data = await response.json(); //Map to js object
       let products = data.items;
       products = products.map(item => {
         const { title, price } = item.fields;
