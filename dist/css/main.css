@@ -35,7 +35,7 @@ body {
   letter-spacing: 3px;
   font-weight: 700; }
   .logo .logo-red {
-    color: red; }
+    color: #f00; }
 
 .nav-icon {
   font-size: 1.5rem;
@@ -285,7 +285,7 @@ body {
   .cart-item h5 {
     margin: 0.5rem 0;
     letter-spacing: 0.1rem;
-    color: red; }
+    color: #f00; }
   .cart-item .amount-container {
     display: flex;
     text-align: center;
@@ -301,7 +301,7 @@ body {
   .cart-item .fa-plus {
     color: green; }
   .cart-item .fa-minus {
-    color: red; }
+    color: #f00; }
   .cart-item .fa-plus,
   .cart-item .fa-minus {
     cursor: pointer;
@@ -323,5 +323,5 @@ body {
   background: black;
   border-top: 1px solid #111; }
   .footer a {
-    color: red;
+    color: #f00;
     text-decoration: none; }

@@ -86,7 +86,7 @@
   h5 {
     margin: 0.5rem 0;
     letter-spacing: $mainSpacing;
-    color: red;
+    color: $primary-color;
   }
 
   .amount-container {
@@ -112,7 +112,7 @@
   }
 
   .fa-minus {
-    color: red;
+    color: $primary-color;
   }
 
   .fa-plus,

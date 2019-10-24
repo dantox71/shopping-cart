@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "sys": {
+        "id": "1"
+      },
+      "fields": {
+        "title": "super laptop",
+        "price": 2000,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./img/product1.jpg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "2"
+      },
+      "fields": {
+        "title": "apple laptop",
+        "price": 10000,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./img/product2.jpg"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
