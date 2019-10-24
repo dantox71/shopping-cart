@@ -1,0 +1,82 @@
+.products {
+  padding: 4rem 0;
+  background: rgba(0, 0, 0, 1);
+  color: $mainWhite;
+}
+
+.section-title h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 5rem;
+  text-transform: capitalize;
+  letter-spacing: $mainSpacing;
+}
+
+.products-center {
+  width: 90vw; //Viewport Width
+  margin: 0 auto;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 2rem;
+}
+
+.img-container {
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .product-img {
+      opacity: 0.4;
+    }
+
+    //Show button
+    .bag-btn {
+      transform: translateX(0);
+    }
+  }
+}
+
+.bag-btn {
+  position: absolute;
+  top: 70%;
+  right: 0;
+  background: #000;
+  opacity: 0.9;
+  color: $mainWhite;
+  border: none;
+  text-transform: uppercase;
+  padding: 0.9rem 1.5rem;
+  letter-spacing: $mainSpacing;
+  font-weight: bold;
+  transition: $mainTransition;
+  transform: translateX(101%);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.product-img {
+  width: 100%;
+  display: block;
+  min-height: 12rem;
+  transition: $mainTransition;
+}
+
+.product h3 {
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  letter-spacing: $mainSpacing;
+  text-align: center;
+}
+
+.product h4 {
+  margin-top: 0.7rem;
+  letter-spacing: $mainSpacing;
+  text-align: center;
+  color: #f00;
+}

@@ -1,0 +1,14 @@
+//This file is responsible only for importing partials
+
+//Utilities
+@import "utilities/variables";
+
+//Main page styles
+@import "page/base";
+
+//Layout
+@import "layout/navbar";
+@import "layout/header";
+@import "layout/products";
+@import "layout/cart";
+@import "layout/footer";
