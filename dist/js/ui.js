@@ -126,6 +126,37 @@ class UI {
     clearCartBtn.addEventListener("click", () => {
       this.clearCart();
     });
+
+    //cart functionality
+    cartContent.addEventListener("click", e => {
+      if (e.target.classList.contains("remove-item")) {
+        let removeItem = event.target;
+        let id = removeItem.dataset.id;
+        removeItem.parentElement.parentElement.remove();
+        this.removeItem(id);
+      } else if (event.target.classList.contains("fa-plus")) {
+        let addAmount = event.target;
+        let id = addAmount.dataset.id;
+        let tempItem = cart.find(item => item.id === id);
+        tempItem.amount = tempItem.amount + 1;
+        Storage.saveCart(cart);
+        this.setCartValues(cart);
+        addAmount.nextElementSibling.innerText = tempItem.amount;
+      } else if (event.target.classList.contains("fa-minus")) {
+        let subtractAmount = event.target;
+        let id = subtractAmount.dataset.id;
+        let tempItem = cart.find(item => item.id === id);
+
+        if (tempItem.amount > 1) {
+          tempItem.amount = tempItem.amount - 1;
+          Storage.saveCart(cart);
+          this.setCartValues(cart);
+          subtractAmount.previousElementSibling.innerText = tempItem.amount;
+        } else {
+          subtractAmount.parentElement.parentElement.remove();
+        }
+      }
+    });
   }
 
   clearCart() {
