@@ -48,6 +48,22 @@
           }
         }
       }
+    },
+    {
+      "sys": {
+        "id": "4"
+      },
+      "fields": {
+        "title": "dell laptop",
+        "price": 1200,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./img/product4.jpeg"
+            }
+          }
+        }
+      }
     }
   ]
 }

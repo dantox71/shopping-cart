@@ -25,4 +25,98 @@ class UI {
 
     productsDOM.innerHTML = result;
   }
+
+  getBagButtons() {
+    const bagButtons = [...document.querySelectorAll(".bag-btn")]; //spread items
+    buttonsDOM = bagButtons;
+    bagButtons.forEach(button => {
+      let id = button.dataset.id;
+      //Check if item is already in cart
+      let inCart = cart.find(item => item.id === id);
+      if (inCart) {
+        button.innerText = "In Cart";
+        button.disabled = true;
+      }
+
+      button.addEventListener("click", e => {
+        e.target.innerText = "In Cart";
+        e.target.disabled = true;
+        //get product from products
+        let cartItem = { ...Storage.getProduct(id), amount: 1 };
+
+        //add product to the cart
+        cart = [...cart, cartItem];
+        //save cart in local storage
+        Storage.saveCart(cart);
+        //set cart values
+        this.setCartValues(cart);
+        //display cart item
+        this.addCartItem(cartItem);
+        //show the cart
+        this.showCart();
+      });
+    });
+  }
+
+  setCartValues(cart) {
+    let tempTotal = 0; //total price
+    let itemsTotal = 0; //total amount of items in cart
+
+    cart.map(item => {
+      tempTotal += item.price * item.amount;
+      itemsTotal += item.amount;
+    });
+
+    cartTotal.innerText = parseFloat(tempTotal).toFixed(2);
+
+    cartItems.innerText = itemsTotal;
+  }
+
+  addCartItem(item) {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+
+      <img src="${item.image}" alt="Product">
+      <div>
+        <h4>${item.title}</h4>
+        <h5>${item.price}</h5>
+        <span class="remove-item" data-id=${item.id}>remove</span>
+      </div>
+
+      <div class="amount-container">
+        <!--Amount-->
+        <i class="fas fa-plus" data-id="${item.id}"></i>
+        <p class="item-amount">${item.amount}</p>
+        <i class="fas fa-minus" data-id=${item.id}></i>
+      </div>
+    `;
+
+    cartContent.appendChild(div);
+  }
+
+  showCart() {
+    cartDOM.classList.add("showCart");
+    cartOverlay.classList.add("showCartOverlay");
+  }
+
+  hideCart() {
+    cartDOM.classList.remove("showCart");
+    cartOverlay.classList.remove("showCartOverlay");
+  }
+
+  setupAPP() {
+    cart = Storage.getCart();
+    this.setCartValues(cart);
+    this.populateCart(cart);
+
+    //Show cart after clicking on cart button
+    cartBtn.addEventListener("click", this.showCart);
+
+    closeCartBtn.addEventListener("click", this.hideCart);
+  }
+
+  populateCart(cart) {
+    cart.forEach(item => this.addCartItem(item));
+  }
 }
