@@ -6,7 +6,7 @@
       },
       "fields": {
         "title": "super laptop",
-        "price": 2000,
+        "price": 2100,
         "image": {
           "fields": {
             "file": {
@@ -27,6 +27,23 @@
           "fields": {
             "file": {
               "url": "./img/product2.jpeg"
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "sys": {
+        "id": "3"
+      },
+      "fields": {
+        "title": "microsoft laptop",
+        "price": 3000,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./img/product3.jpeg"
             }
           }
         }

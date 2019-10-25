@@ -9,7 +9,7 @@ const cartTotal = document.querySelector(".cart-total");
 const cartContent = document.querySelector(".cart-content");
 const productsDOM = document.querySelector(".products-center");
 
-// cart
+// initialize cart array
 let cart = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const products = new Products();
   const storage = new Storage();
 
-  products.getProducts().then(products => console.log(products));
+  // products.getProducts().then(products => console.log(products));
 
-  products.getProducts().then(products => ui.displayProducts(products));
+  products.getProducts().then(products => {
+    ui.displayProducts(products);
+    Storage.saveProducts(products);
+  });
 });
