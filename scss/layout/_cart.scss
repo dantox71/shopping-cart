@@ -3,7 +3,8 @@
   top: 0;
   right: 0;
   width: 100%;
-  height: 100%;
+
+  min-height: 100vh;
   transition: $mainTransition;
   background: rgba(0, 0, 0, 0.8);
   z-index: 3;
@@ -11,7 +12,7 @@
 }
 
 .cart {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   height: 100%;
@@ -19,25 +20,17 @@
   width: 100%;
   overflow: scroll;
   z-index: 3;
+  background: rgba(255, 255, 255, 0.8);
 
   padding: 1.5rem;
   transition: $mainTransition;
   transform: translateX(100%);
-
-  &::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    z-index: -1;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.8);
-  }
 }
 
 .showCart {
   transform: translateX(0);
+  height: 100%;
+  overflow: scroll;
 }
 .showCartOverlay {
   visibility: visible;

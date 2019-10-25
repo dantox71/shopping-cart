@@ -5,7 +5,7 @@
         "id": "1"
       },
       "fields": {
-        "title": "super laptop",
+        "title": "Lenovo Laptop",
         "price": 2100,
         "image": {
           "fields": {
@@ -21,8 +21,8 @@
         "id": "2"
       },
       "fields": {
-        "title": "super expensive apple laptop",
-        "price": 10000,
+        "title": "Apple Laptop",
+        "price": 12354,
         "image": {
           "fields": {
             "file": {
@@ -38,8 +38,8 @@
         "id": "3"
       },
       "fields": {
-        "title": "microsoft laptop",
-        "price": 3000,
+        "title": "Asus Laptop",
+        "price": 2120,
         "image": {
           "fields": {
             "file": {
@@ -54,8 +54,8 @@
         "id": "4"
       },
       "fields": {
-        "title": "dell laptop",
-        "price": 1200,
+        "title": "Acer Laptop",
+        "price": 3720,
         "image": {
           "fields": {
             "file": {
@@ -70,12 +70,28 @@
         "id": "5"
       },
       "fields": {
-        "title": "hp laptop",
-        "price": 1900,
+        "title": "Razer Laptop",
+        "price": 2435,
         "image": {
           "fields": {
             "file": {
               "url": "./img/product5.jpeg"
+            }
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "id": "6"
+      },
+      "fields": {
+        "title": "Microsoft Laptop",
+        "price": 2435,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./img/product6.jpeg"
             }
           }
         }

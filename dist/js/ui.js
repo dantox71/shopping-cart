@@ -53,7 +53,7 @@ class UI {
         //display cart item
         this.addCartItem(cartItem);
         //show the cart
-        this.showCart();
+        // this.showCart();
       });
     });
   }
@@ -163,7 +163,8 @@ class UI {
         } else {
           subtractAmount.parentElement.parentElement.remove();
           cart = cart.filter(item => item.id !== id);
-          Storage.saveCart(cart);
+
+          this.removeItem(id);
         }
       }
     });
