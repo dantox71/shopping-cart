@@ -93,16 +93,7 @@ class UI {
     `;
 
     cartContent.appendChild(div);
-  }
-
-  showCart() {
-    cartDOM.classList.add("showCart");
-    cartOverlay.classList.add("showCartOverlay");
-  }
-
-  hideCart() {
-    cartDOM.classList.remove("showCart");
-    cartOverlay.classList.remove("showCartOverlay");
+    // cartDOM.style.height = "100%";
   }
 
   setupAPP() {
@@ -118,5 +109,47 @@ class UI {
 
   populateCart(cart) {
     cart.forEach(item => this.addCartItem(item));
+  }
+
+  showCart() {
+    cartDOM.classList.add("showCart");
+    cartOverlay.classList.add("showCartOverlay");
+  }
+
+  hideCart() {
+    cartDOM.classList.remove("showCart");
+    cartOverlay.classList.remove("showCartOverlay");
+  }
+
+  cartLogic() {
+    //clear cart button
+    clearCartBtn.addEventListener("click", () => {
+      this.clearCart();
+    });
+  }
+
+  clearCart() {
+    let cartItems = cart.map(item => item.id);
+    cartItems.forEach(id => this.removeItem(id));
+
+    while (cartContent.children.length > 0) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+
+    this.hideCart();
+  }
+
+  removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    this.setCartValues(cart);
+    Storage.saveCart(cart); //Set new cart items in localStorage
+    let button = this.getSingleButton(id);
+    button.disabled = false;
+    button.innerHTML = `Add To Cart
+              <i class="fas fa-shopping-cart"></i>`;
+  }
+
+  getSingleButton(id) {
+    return buttonsDOM.find(button => button.dataset.id === id);
   }
 }

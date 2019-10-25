@@ -31,5 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(() => {
       ui.getBagButtons();
-    });
+    })
+    .then(() => ui.cartLogic());
 });
