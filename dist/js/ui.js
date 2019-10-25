@@ -97,7 +97,7 @@ class UI {
   }
 
   setupAPP() {
-    cart = Storage.getCart();
+    cart = Storage.getCart(); //Get items from localStorage
     this.setCartValues(cart);
     this.populateCart(cart);
 
@@ -138,22 +138,32 @@ class UI {
         let addAmount = event.target;
         let id = addAmount.dataset.id;
         let tempItem = cart.find(item => item.id === id);
+
         tempItem.amount = tempItem.amount + 1;
+
         Storage.saveCart(cart);
+
         this.setCartValues(cart);
+
         addAmount.nextElementSibling.innerText = tempItem.amount;
       } else if (event.target.classList.contains("fa-minus")) {
         let subtractAmount = event.target;
         let id = subtractAmount.dataset.id;
+
         let tempItem = cart.find(item => item.id === id);
 
         if (tempItem.amount > 1) {
           tempItem.amount = tempItem.amount - 1;
+
           Storage.saveCart(cart);
+
           this.setCartValues(cart);
+
           subtractAmount.previousElementSibling.innerText = tempItem.amount;
         } else {
           subtractAmount.parentElement.parentElement.remove();
+          cart = cart.filter(item => item.id !== id);
+          Storage.saveCart(cart);
         }
       }
     });

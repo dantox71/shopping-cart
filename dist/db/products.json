@@ -64,6 +64,22 @@
           }
         }
       }
+    },
+    {
+      "sys": {
+        "id": "5"
+      },
+      "fields": {
+        "title": "hp laptop",
+        "price": 1900,
+        "image": {
+          "fields": {
+            "file": {
+              "url": "./img/product5.jpeg"
+            }
+          }
+        }
+      }
     }
   ]
 }
