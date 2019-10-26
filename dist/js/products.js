@@ -2,12 +2,21 @@
 class Products {
   async getProducts() {
     try {
-      let response = await fetch("db/products.json");
-      let data = await response.json(); //Map to js object
-      let products = data.items;
+      let contentful = await client.getEntries({
+        content_type: "laptopStore"
+      });
+
+      // let result = await fetch("products.json");
+      // let data = await result.json(); //Map to js object
+
+      let products = contentful.items;
+      console.log(products);
+      // console.log(products[0].fields.image.fields.file.url);
+      // console.log(products);
       products = products.map(item => {
         const { title, price } = item.fields;
         const { id } = item.sys;
+
         const image = item.fields.image.fields.file.url;
 
         return { title, price, id, image };
