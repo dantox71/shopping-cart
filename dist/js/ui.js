@@ -45,6 +45,9 @@ class UI {
         //get product from products
         let cartItem = { ...Storage.getProduct(id), amount: 1 };
 
+        //Clow alert after adding item to cart
+        this.showAlert(`${cartItem.title} has been added to the cart`);
+
         //add product to the cart
         cart = [...cart, cartItem];
         //save cart in local storage
@@ -94,20 +97,17 @@ class UI {
 
     //Append new added item to cartContent
     cartContent.appendChild(div);
-    this.showAlert(item);
   }
 
-  showAlert(item) {
+  showAlert(message) {
     const div = document.createElement('div');
     div.classList.add('alert');
-    div.appendChild(
-      document.createTextNode(`${item.title} has been added to cart`)
-    );
+    div.appendChild(document.createTextNode(message));
 
     productsDOM.insertAdjacentElement('beforebegin', div);
 
     //Remove alert after 3 sec
-    setTimeout(this.removeAlert, 3000);
+    setTimeout(this.removeAlert, 2000);
   }
 
   removeAlert() {
@@ -147,6 +147,7 @@ class UI {
     //clear cart button
     clearCartBtn.addEventListener('click', () => {
       this.clearCart();
+      this.showAlert('Cart has been cleared');
     });
 
     //cart functionality
@@ -154,7 +155,10 @@ class UI {
       if (e.target.classList.contains('remove-item')) {
         let removeItem = event.target;
         let id = removeItem.dataset.id;
+        let cartItem = { ...Storage.getProduct(id) };
+        this.showAlert(`${cartItem.title} has been removed from the cart`);
         removeItem.parentElement.parentElement.remove();
+
         this.removeItem(id);
       } else if (event.target.classList.contains('fa-plus')) {
         let addAmount = event.target;
@@ -211,6 +215,8 @@ class UI {
     button.disabled = false;
     button.innerHTML = `Add To Cart
               <i class="fas fa-shopping-cart"></i>`;
+
+    this.hideCart();
   }
 
   getSingleButton(id) {
