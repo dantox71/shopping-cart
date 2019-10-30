@@ -1,7 +1,8 @@
 //UI class is responsible for displaying products
 class UI {
   displayProducts(products) {
-    let result = "";
+    let result = '';
+
     products.forEach(product => {
       result += `
          <article class="product">
@@ -27,19 +28,19 @@ class UI {
   }
 
   getBagButtons() {
-    const bagButtons = [...document.querySelectorAll(".bag-btn")]; //spread items
+    const bagButtons = [...document.querySelectorAll('.bag-btn')]; //spread items
     buttonsDOM = bagButtons;
     bagButtons.forEach(button => {
       let id = button.dataset.id;
       //Check if item is already in cart
       let inCart = cart.find(item => item.id === id);
       if (inCart) {
-        button.innerText = "In Cart";
+        button.innerText = 'In Cart';
         button.disabled = true;
       }
 
-      button.addEventListener("click", e => {
-        e.target.innerText = "In Cart";
+      button.addEventListener('click', e => {
+        e.target.innerText = 'In Cart';
         e.target.disabled = true;
         //get product from products
         let cartItem = { ...Storage.getProduct(id), amount: 1 };
@@ -59,7 +60,7 @@ class UI {
   }
 
   setCartValues(cart) {
-    let tempTotal = 0; //total price
+    let tempTotal = 0; //total price to pay
     let itemsTotal = 0; //total amount of items in cart
 
     cart.map(item => {
@@ -73,8 +74,8 @@ class UI {
   }
 
   addCartItem(item) {
-    const div = document.createElement("div");
-    div.classList.add("cart-item");
+    const div = document.createElement('div');
+    div.classList.add('cart-item');
     div.innerHTML = `
 
       <img src="${item.image}" alt="Product">
@@ -85,15 +86,36 @@ class UI {
       </div>
 
       <div class="amount-container">
-        <!--Amount-->
         <i class="fas fa-plus" data-id="${item.id}"></i>
         <p class="item-amount">${item.amount}</p>
         <i class="fas fa-minus" data-id=${item.id}></i>
       </div>
     `;
 
+    //Append new added item to cartContent
     cartContent.appendChild(div);
-    // cartDOM.style.height = "100%";
+    this.showAlert(item);
+  }
+
+  showAlert(item) {
+    const div = document.createElement('div');
+    div.classList.add('alert');
+    div.appendChild(
+      document.createTextNode(`${item.title} has been added to cart`)
+    );
+
+    productsDOM.insertAdjacentElement('beforebegin', div);
+
+    //Remove alert after 3 sec
+    setTimeout(this.removeAlert, 3000);
+  }
+
+  removeAlert() {
+    const alert = document.querySelector('.alert');
+
+    if (alert) {
+      alert.remove();
+    }
   }
 
   setupAPP() {
@@ -102,9 +124,9 @@ class UI {
     this.populateCart(cart);
 
     //Show cart after clicking on cart button
-    cartBtn.addEventListener("click", this.showCart);
+    cartBtn.addEventListener('click', this.showCart);
 
-    closeCartBtn.addEventListener("click", this.hideCart);
+    closeCartBtn.addEventListener('click', this.hideCart);
   }
 
   populateCart(cart) {
@@ -112,29 +134,29 @@ class UI {
   }
 
   showCart() {
-    cartDOM.classList.add("showCart");
-    cartOverlay.classList.add("showCartOverlay");
+    cartDOM.classList.add('showCart');
+    cartOverlay.classList.add('showCartOverlay');
   }
 
   hideCart() {
-    cartDOM.classList.remove("showCart");
-    cartOverlay.classList.remove("showCartOverlay");
+    cartDOM.classList.remove('showCart');
+    cartOverlay.classList.remove('showCartOverlay');
   }
 
   cartLogic() {
     //clear cart button
-    clearCartBtn.addEventListener("click", () => {
+    clearCartBtn.addEventListener('click', () => {
       this.clearCart();
     });
 
     //cart functionality
-    cartContent.addEventListener("click", e => {
-      if (e.target.classList.contains("remove-item")) {
+    cartContent.addEventListener('click', e => {
+      if (e.target.classList.contains('remove-item')) {
         let removeItem = event.target;
         let id = removeItem.dataset.id;
         removeItem.parentElement.parentElement.remove();
         this.removeItem(id);
-      } else if (event.target.classList.contains("fa-plus")) {
+      } else if (event.target.classList.contains('fa-plus')) {
         let addAmount = event.target;
         let id = addAmount.dataset.id;
         let tempItem = cart.find(item => item.id === id);
@@ -146,7 +168,7 @@ class UI {
         this.setCartValues(cart);
 
         addAmount.nextElementSibling.innerText = tempItem.amount;
-      } else if (event.target.classList.contains("fa-minus")) {
+      } else if (event.target.classList.contains('fa-minus')) {
         let subtractAmount = event.target;
         let id = subtractAmount.dataset.id;
 

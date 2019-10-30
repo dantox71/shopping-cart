@@ -29,8 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //setup App
   ui.setupAPP();
 
-  // products.getProducts().then(products => console.log(products));
-
   products
     .getProducts()
     .then(products => {

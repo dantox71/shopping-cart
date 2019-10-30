@@ -3,16 +3,15 @@ class Products {
   async getProducts() {
     try {
       let contentful = await client.getEntries({
-        content_type: "laptopStore"
+        content_type: 'laptopStore'
       });
 
+      //To switch from contentful to local json , just uncomment these 2 variables and replace products = data instead of contentful.items
       // let result = await fetch("products.json");
       // let data = await result.json(); //Map to js object
 
       let products = contentful.items;
-      console.log(products);
-      // console.log(products[0].fields.image.fields.file.url);
-      // console.log(products);
+
       products = products.map(item => {
         const { title, price } = item.fields;
         const { id } = item.sys;

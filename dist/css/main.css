@@ -152,7 +152,8 @@ body {
 .products {
   padding: 4rem 0;
   background: black;
-  color: #fff; }
+  color: #fff;
+  text-align: center; }
 
 .section-title h2 {
   text-align: center;
@@ -214,6 +215,14 @@ body {
   letter-spacing: 0.1rem;
   text-align: center;
   color: #f00; }
+
+.alert {
+  padding: 1rem;
+  width: 85%;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+  margin: 1rem auto; }
 
 .cart-overlay {
   position: fixed;
