@@ -50,30 +50,6 @@ body {
   transition: all 0.3s linear; }
   .nav-icon:hover {
     opacity: 1; }
-  .nav-icon .nav-line {
-    width: 100%;
-    border-radius: 5px;
-    height: 4px;
-    background: #fff;
-    position: relative; }
-    .nav-icon .nav-line:before {
-      content: "";
-      position: absolute;
-      background: #fff;
-      top: -10px;
-      left: 0;
-      width: 70%;
-      height: 4px;
-      border-radius: 5px; }
-    .nav-icon .nav-line:after {
-      content: "";
-      position: absolute;
-      background: #fff;
-      top: 10px;
-      left: 10.5px;
-      width: 70%;
-      border-radius: 5px;
-      height: 4px; }
 
 .cart-btn {
   position: relative;
@@ -222,7 +198,8 @@ body {
   margin: auto;
   background: rgba(255, 255, 255, 0.5);
   color: black;
-  margin: 1rem auto; }
+  margin: 1rem auto;
+  border-radius: 5px; }
 
 .cart-overlay {
   position: fixed;
