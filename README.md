@@ -6,3 +6,6 @@
   <li>HTML5</li>
   <li>CSS3(SCSS)</li>
 </ul>
+
+
+Live preview https://laptop-store-shopping-cart.netlify.com/
