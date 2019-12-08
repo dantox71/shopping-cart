@@ -1,7 +1,7 @@
 //UI class is responsible for displaying products
 class UI {
   displayProducts(products) {
-    let result = '';
+    let result = "";
 
     products.forEach(product => {
       result += `
@@ -28,19 +28,19 @@ class UI {
   }
 
   getBagButtons() {
-    const bagButtons = [...document.querySelectorAll('.bag-btn')]; //spread items
+    const bagButtons = [...document.querySelectorAll(".bag-btn")]; //spread items
     buttonsDOM = bagButtons;
     bagButtons.forEach(button => {
       let id = button.dataset.id;
       //Check if item is already in cart
       let inCart = cart.find(item => item.id === id);
       if (inCart) {
-        button.innerText = 'In Cart';
+        button.innerText = "In Cart";
         button.disabled = true;
       }
 
-      button.addEventListener('click', e => {
-        e.target.innerText = 'In Cart';
+      button.addEventListener("click", e => {
+        e.target.innerText = "In Cart";
         e.target.disabled = true;
         //get product from products
         let cartItem = { ...Storage.getProduct(id), amount: 1 };
@@ -77,8 +77,8 @@ class UI {
   }
 
   addCartItem(item) {
-    const div = document.createElement('div');
-    div.classList.add('cart-item');
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
     div.innerHTML = `
 
       <img src="${item.image}" alt="Product">
@@ -100,18 +100,23 @@ class UI {
   }
 
   showAlert(message) {
-    const div = document.createElement('div');
-    div.classList.add('alert');
+    //Remove alert before adding new one
+    this.removeAlert();
+
+    const div = document.createElement("div");
+
+    div.classList.add("alert");
+
     div.appendChild(document.createTextNode(message));
 
-    productsDOM.insertAdjacentElement('beforebegin', div);
+    productsDOM.insertAdjacentElement("beforebegin", div);
 
     //Remove alert after 3 sec
     setTimeout(this.removeAlert, 2000);
   }
 
-  removeAlert() {
-    const alert = document.querySelector('.alert');
+  removeAlert(id) {
+    const alert = document.querySelector(".alert");
 
     if (alert) {
       alert.remove();
@@ -119,14 +124,14 @@ class UI {
   }
 
   setupAPP() {
-    cart = Storage.getCart(); //Get items from localStorage
+    cart = Storage.getCart(); //Get items already in cart from localStorage
     this.setCartValues(cart);
     this.populateCart(cart);
 
     //Show cart after clicking on cart button
-    cartBtn.addEventListener('click', this.showCart);
+    cartBtn.addEventListener("click", this.showCart);
 
-    closeCartBtn.addEventListener('click', this.hideCart);
+    closeCartBtn.addEventListener("click", this.hideCart);
   }
 
   populateCart(cart) {
@@ -134,60 +139,70 @@ class UI {
   }
 
   showCart() {
-    cartDOM.classList.add('showCart');
-    cartOverlay.classList.add('showCartOverlay');
+    cartDOM.classList.add("showCart");
+    cartOverlay.classList.add("showCartOverlay");
   }
 
   hideCart() {
-    cartDOM.classList.remove('showCart');
-    cartOverlay.classList.remove('showCartOverlay');
+    cartDOM.classList.remove("showCart");
+    cartOverlay.classList.remove("showCartOverlay");
   }
 
   cartLogic() {
     //clear cart button
-    clearCartBtn.addEventListener('click', () => {
+    clearCartBtn.addEventListener("click", () => {
       this.clearCart();
-      this.showAlert('Cart has been cleared');
+      this.showAlert("Cart has been cleared");
     });
 
     //cart functionality
-    cartContent.addEventListener('click', e => {
-      if (e.target.classList.contains('remove-item')) {
+    cartContent.addEventListener("click", e => {
+      if (e.target.classList.contains("remove-item")) {
         let removeItem = event.target;
         let id = removeItem.dataset.id;
         let cartItem = { ...Storage.getProduct(id) };
-        this.showAlert(`${cartItem.title} has been removed from the cart`);
+
+        //Remove item from UI
         removeItem.parentElement.parentElement.remove();
 
         this.removeItem(id);
-      } else if (event.target.classList.contains('fa-plus')) {
+        this.showAlert(`${cartItem.title} has been removed from the cart`);
+      } else if (event.target.classList.contains("fa-plus")) {
         let addAmount = event.target;
         let id = addAmount.dataset.id;
         let tempItem = cart.find(item => item.id === id);
 
-        tempItem.amount = tempItem.amount + 1;
+        //Increment amount
+        tempItem.amount += 1;
 
+        //Save cart with new amount ot he localstorage
         Storage.saveCart(cart);
 
         this.setCartValues(cart);
 
+        //Change amount of items in cart in UI
         addAmount.nextElementSibling.innerText = tempItem.amount;
-      } else if (event.target.classList.contains('fa-minus')) {
+      } else if (event.target.classList.contains("fa-minus")) {
         let subtractAmount = event.target;
         let id = subtractAmount.dataset.id;
 
         let tempItem = cart.find(item => item.id === id);
 
         if (tempItem.amount > 1) {
-          tempItem.amount = tempItem.amount - 1;
+          //Decrement amount
+          tempItem.amount -= 1;
 
+          //Save cart with new amount in the database
           Storage.saveCart(cart);
 
+          //Set new cart values
           this.setCartValues(cart);
 
           subtractAmount.previousElementSibling.innerText = tempItem.amount;
         } else {
+          //Remove item completely from UI
           subtractAmount.parentElement.parentElement.remove();
+
           cart = cart.filter(item => item.id !== id);
 
           this.removeItem(id);
@@ -198,8 +213,10 @@ class UI {
 
   clearCart() {
     let cartItems = cart.map(item => item.id);
+
     cartItems.forEach(id => this.removeItem(id));
 
+    //Clear cart's UI
     while (cartContent.children.length > 0) {
       cartContent.removeChild(cartContent.children[0]);
     }
@@ -209,8 +226,9 @@ class UI {
 
   removeItem(id) {
     cart = cart.filter(item => item.id !== id);
+    //Update cart values
     this.setCartValues(cart);
-    Storage.saveCart(cart); //Set new cart items in localStorage
+    Storage.saveCart(cart); //Set new cart  in localStorage
     let button = this.getSingleButton(id);
     button.disabled = false;
     button.innerHTML = `Add To Cart
