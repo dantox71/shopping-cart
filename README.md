@@ -7,5 +7,7 @@
   <li>CSS3(SCSS)</li>
 </ul>
 
+<h2>It's also integrated with Contentful CMS</p>
+
 
 Live preview https://laptop-store-shopping-cart.netlify.com/
