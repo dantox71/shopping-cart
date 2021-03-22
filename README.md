@@ -7,7 +7,9 @@
   <li>CSS3(SCSS)</li>
 </ul>
 
-<h4>It's also integrated with Contentful CMS</h4>
+
+
+<h4>It's also integrated with Contentful CMS and items in cart are stored in LocalStorage</h4>
 
 
 Live preview https://laptop-store-shopping-cart.netlify.com/
